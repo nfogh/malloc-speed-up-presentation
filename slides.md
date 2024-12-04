@@ -227,6 +227,10 @@ Noop                    0.426 ns    0.174 ns     3884135829
  - Fixed in google-benchmark v1.6.2+
  - Can reproduce in compiler explorer when using google-benchmark v1.6.1-
 
+</v-clicks>
+
+<v-clicks>
+
 ```text
 ----------------------------------------------------------------
 Benchmark                      Time             CPU   Iterations
