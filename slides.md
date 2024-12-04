@@ -143,7 +143,8 @@ Non-allocating             |  Allocating
 ![Non-allocating assembly](/NonAllocatingStructBM.png) | ![Non-allocating assembly](/AllocatingStructBM.png)
 
 <!--
-  Now we can see where the issue is. Moves
+  - This is not an issue when using clang
+  - Now we can see where the issue is. Moves.
 -->
 ---
 
@@ -215,7 +216,30 @@ Noop                    0.426 ns    0.174 ns     3884135829
 </v-clicks>
 
 ---
+
+# What's the difference
+
+<v-clicks>
+
+ - Not everything is the same
+ - Different versions of benchmark framework
+ - https://github.com/google/benchmark/issues/1340
+ - Fixed in google-benchmark v1.6.2+
+ - Can reproduce in compiler explorer when using google-benchmark v1.6.1-
+
+```text
+----------------------------------------------------------------
+Benchmark                      Time             CPU   Iterations
+----------------------------------------------------------------
+NonAllocatingStructBM       90.2 ns         86.3 ns     10540272
+AllocatingStructBM          92.4 ns         41.6 ns     19651369
+Noop                        1.02 ns        0.515 ns   1000000000
+```
+
+</v-clicks>
+
 ---
+
 # What can we learn?
 <br>
 <br>
@@ -228,8 +252,9 @@ Noop                    0.426 ns    0.174 ns     3884135829
 
 <v-clicks>
 
- - Don't trust other results
+ - Microbenchmarking can be misleading
  - Use your own compiler to benchmark
+ - Don't do as I did for real benchmarks
 
 </v-clicks>
 
