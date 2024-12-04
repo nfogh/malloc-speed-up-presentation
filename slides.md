@@ -8,7 +8,9 @@ mdc: true
 overviewSnapshots: true
 ---
 
-# Use malloc to speed up your code... Wait... What?!
+# Use malloc to speed up your code...
+
+<h2 v-click style="text-align: center">Wait... What?!</h2>
 
 ---
 ---
@@ -110,7 +112,7 @@ struct MyClass
 
  - What do you think?
  - I expected no real change
- - Maybe slightly slower malloc
+ - Maybe slightly slower heap allocation
 
 </v-clicks>
 
@@ -126,8 +128,13 @@ struct MyClass
 <v-clicks>
 
  - Allocating is actually _faster_ than the non-allocating case?
+ - Let's investigate
 
 </v-clicks>
+
+<!--
+ My world crumbled, and I got into fetus position chanting "I know nothing, I know nothing"
+-->
 
 ---
 
@@ -135,6 +142,9 @@ Non-allocating             |  Allocating
 :-------------------------:|:-------------------------:
 ![Non-allocating assembly](/NonAllocatingStructBM.png) | ![Non-allocating assembly](/AllocatingStructBM.png)
 
+<!--
+  Now we can see where the issue is. Moves
+-->
 ---
 
 # Let's fix up the benchmark
@@ -157,6 +167,12 @@ static void AllocatingStructBM(benchmark::State& state) {
 }
 ```
 ````
+
+<v-clicks>
+
+ - Let's run the benchmark again
+
+</v-clicks>
 
 ---
 
